@@ -36,7 +36,6 @@ def is_logged_in():
 def send_message(message):
     # Send the message
     box = get_input_box()
-    box.click()
     box.fill(message)
     box.press("Enter")
     while PAGE.query_selector(".result-streaming") is not None:
@@ -58,15 +57,17 @@ def chat():
     return response
 
 def start_browser():
+    PAGE.set_default_timeout(0)
     PAGE.goto("https://chat.openai.com/")
     if not is_logged_in():
-        print("Please log in to OpenAI Chat")
-        print("Press enter when you're done")
+        print("Logging in...")
         PAGE.get_by_text("Log in", exact=True).click()
         PAGE.locator("#username").fill(USERNAME)
         PAGE.get_by_text("Continue", exact=True).click()
         PAGE.locator("#password").fill(PASSWORD)
         PAGE.get_by_text("Continue", exact=True).click()
+
+    print("Logged in")
     APP.run(port=5001, threaded=False)
         
 if __name__ == "__main__":
