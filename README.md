@@ -5,6 +5,8 @@ GPT3 Telegram bot assistant
 
 ```sh
 pip install -r requirements.txt
+
+playwright install
 ```
 
 Create `.env` with:
@@ -16,6 +18,8 @@ API_PASSWORD = <OPENAI_PASSWORD>
 ```
 
 ## Run
+
+Execute simultaneously:
 
 ```sh
 python server.py
