@@ -1,5 +1,4 @@
-# Telegram GPT assistant
-GPT3 Telegram bot assistant
+# Telegram GPT assistant 🤖🦸‍♂️
 
 ## Installation
 
