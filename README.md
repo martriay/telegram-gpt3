@@ -24,3 +24,7 @@ python server.py
 ```sh
 python bot.py
 ```
+
+## Acknowledgements
+
+Reused the https://chat.open.ai automation by [Daniel Gross](https://github.com/danielgross/whatsapp-gpt/blob/main/server.py).
