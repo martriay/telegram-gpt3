@@ -1,4 +1,4 @@
-# gpgram3
+# Telegram GPT assistant
 GPT3 Telegram bot assistant
 
 ## Installation
