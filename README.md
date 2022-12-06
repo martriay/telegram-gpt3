@@ -25,7 +25,7 @@ API_PASSWORD = <OPENAI_PASSWORD>
 Execute simultaneously:
 
 ```sh
-python server.py
+python api.py
 ```
 
 ```sh
