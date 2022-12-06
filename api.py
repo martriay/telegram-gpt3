@@ -26,7 +26,7 @@ APP = flask.Flask(__name__)
 PLAY = sync_playwright().start()
 PAGE = PLAY.chromium.launch_persistent_context(
     user_data_dir="/tmp/playwright",
-    headless=False,
+    headless=True,
 ).new_page()
 
 
