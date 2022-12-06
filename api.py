@@ -48,9 +48,9 @@ def login():
         PAGE.get_by_text("Continue", exact=True).click()
     logging.info("Logged in")
 
-def send_message(message):
+def send_message(user, message):
     try:
-        logging.info(f"Sending message: {message}")
+        logging.info(f"{user} says: {message}")
         box = get_input_box()
         box.fill(message)
         box.press("Enter")
@@ -68,7 +68,8 @@ def get_last_message():
 @APP.route("/chat", methods=["GET"])
 def chat():
     message = flask.request.args.get("q")
-    send_message(message)
+    user = flask.request.args.get("u")
+    send_message(user, message)
 
     while PAGE.query_selector(".result-streaming") is not None:
         time.sleep(0.1)
