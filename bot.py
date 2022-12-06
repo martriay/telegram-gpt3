@@ -65,7 +65,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Echo the user message."""
     query = update.message.text
-    user = update.effective_user.mention_html()
+    user = update.effective_user.full_name
     response = requests.get(url="http://localhost:5001/chat", params = { "q": query, "u": user })
     await update.message.reply_text(response.text)
 
