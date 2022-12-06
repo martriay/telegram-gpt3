@@ -52,7 +52,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     await update.message.reply_html(
-        rf"Hi {user.mention_html()}!",
+        rf"Hi {user.mention_html()}! I'm gppgram3.
+        If an error occurs, you can reset me with /reset",
         reply_markup=ForceReply(selective=True),
     )
 
@@ -70,6 +71,12 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(response.text)
 
 
+async def reset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Reset the session."""
+    response = requests.post(url="http://localhost:5001/reset")
+    await update.message.reply_text(response.text)
+
+
 def main() -> None:
     """Start the bot."""
     # Create the Application and pass it your bot's token.
@@ -77,6 +84,7 @@ def main() -> None:
 
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("reset", reset))
     application.add_handler(CommandHandler("help", help_command))
 
     # on non command i.e message - echo the message on Telegram

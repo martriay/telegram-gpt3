@@ -65,6 +65,10 @@ def get_last_message():
     last_element = page_elements[-1]
     return last_element.inner_text()
 
+@APP.route("/reset", methods=["POST"])
+def reset():
+    login()
+
 @APP.route("/chat", methods=["GET"])
 def chat():
     message = flask.request.args.get("q")
