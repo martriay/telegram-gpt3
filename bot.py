@@ -51,9 +51,9 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
-    await update.message.reply_html(
-        rf"Hi {user.mention_html()}! I'm gppgram3.
-        If an error occurs, you can reset me with /reset",
+    await update.message.reply_html( rf"""
+        Hi {user.mention_html()}! I'm gppgram3.
+        If an error occurs, you can reset me with /reset""",
         reply_markup=ForceReply(selective=True),
     )
 
@@ -63,7 +63,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     await update.message.reply_text("Help!")
 
 
-async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Echo the user message."""
     query = update.message.text
     user = update.effective_user.full_name
@@ -74,7 +74,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def reset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Reset the session."""
     response = requests.post(url="http://localhost:5001/reset")
-    await update.message.reply_text(response.text)
+    await update.message.reply_text("🦕✨")
 
 
 def main() -> None:
@@ -87,8 +87,8 @@ def main() -> None:
     application.add_handler(CommandHandler("reset", reset))
     application.add_handler(CommandHandler("help", help_command))
 
-    # on non command i.e message - echo the message on Telegram
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
+    # on non command i.e message - chat the message on Telegram
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
 
     # Run the bot until the user presses Ctrl-C
     application.run_polling()
